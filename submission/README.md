@@ -5,6 +5,9 @@ Case-Study Report for Programming for Data Science (MACSE502), VIT.
 **Team:** Vedant Nimkar (26MML0045), Durvesh Mahajan (26MML0055),
 Shreyan Panda (26MML0022), Ayush Sharma (26MML0043)
 
+- **GitHub Repository:** [https://github.com/adminsharpcode/digital-thread-analytics](https://github.com/adminsharpcode/digital-thread-analytics)
+- **Live Vercel Web Dashboard:** [https://digital-thread-analytics.vercel.app](https://digital-thread-analytics.vercel.app)
+
 This folder maps one-to-one onto the five deliverables named in the Manuscript
 Guidelines.
 

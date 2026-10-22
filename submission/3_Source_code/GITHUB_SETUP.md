@@ -1,52 +1,36 @@
-# Publishing the source to GitHub
+# Digital Thread Analytics — Online Repositories & Deployments
 
-The Manuscript Guidelines ask for the source code to be loaded onto GitHub with
-a link provided. The repository itself is the `PDS project` folder; these are
-the exact commands to publish it.
+The source code, models, datasets, and live dashboard for this project are published and accessible online:
 
-## One-time setup
+- **GitHub Repository:** [https://github.com/adminsharpcode/digital-thread-analytics](https://github.com/adminsharpcode/digital-thread-analytics)
+- **Live Vercel Web Dashboard:** [https://digital-thread-analytics.vercel.app](https://digital-thread-analytics.vercel.app)
 
-```bash
-cd "C:\Users\durve\OneDrive\Desktop\PDS project"
+## Team Attribution
+- **Vedant Nimkar** (`26MML0045`)
+- **Durvesh Mahajan** (`26MML0055`)
+- **Ayush Sharma** (`26MML0043`)
+- **Shreyan Panda** (`26MML0022`)
+- **Faculty Guide:** Dr. M. Rajasekhara Babu
+- **Course:** Programming for Data Science (MACSE502)
+- **School:** School of Computer Science and Engineering, VIT Vellore
 
-git init
-git add .
-git commit -m "Digital Thread Analytics: lineage framework for the data science lifecycle"
+## Repository Structure
 ```
-
-`.gitignore` already excludes `data/`, `artifacts/`, `__pycache__/` and
-`.venv/`, so generated files and the dataset are not committed. That is
-deliberate: the pipeline regenerates them, and the guidelines ask for the
-dataset in its own folder rather than in the repository.
-
-## Create the remote
-
-Either create an empty repository named `digital-thread-analytics` on
-github.com and then:
-
-```bash
-git remote add origin https://github.com/<your-username>/digital-thread-analytics.git
-git branch -M main
-git push -u origin main
+digital-thread-analytics/
+├── api/                  # Vercel Serverless entrypoint (FastAPI)
+├── app/                  # Web dashboard UI & Lineage Explorer API
+│   ├── main.py           # FastAPI application
+│   └── static/           # HTML, CSS, JavaScript frontend
+├── artifacts/            # Thread Ledger database, trained models & reports
+│   ├── thread_ledger.db  # SQLite append-only graph ledger
+│   ├── thread.html       # Self-contained interactive graph
+│   └── models/           # Scikit-learn models (Random Forest, Logistic Regression)
+├── baseline/             # Unthreaded comparison baseline
+├── config/               # Unified lifecycle configuration (config.yaml)
+├── pipeline/             # Stages 1 to 7 (Ingest, Clean, Features, Train, Eval, Serve, Monitor)
+├── submission/           # All 5 submission dossiers (Manuscript, Diagrams, Code, Datasets, Videos)
+├── thread/               # Lineage graph engine (ThreadLedger, Query, Context)
+├── requirements.txt      # Production dependencies
+├── run.py                # Command-line lifecycle runner
+└── vercel.json           # Vercel deployment configuration
 ```
-
-Or, if you have the GitHub CLI installed:
-
-```bash
-gh repo create digital-thread-analytics --public --source=. --remote=origin --push
-```
-
-## What to put in the manuscript
-
-Add the resulting URL to the Data Availability Statement (Section XXIV) in
-place of "available from the corresponding author on reasonable request", for
-example:
-
-> All source code generated during this study is available in the
-> digital-thread-analytics repository, https://github.com/<your-username>/digital-thread-analytics
-
-## Suggested repository description
-
-> A digital thread for the data science lifecycle: an append-only, content-addressed
-> lineage ledger linking raw data, validation, features, runs, models, deployments
-> and drift into one bidirectionally traversable graph. Evaluated on AI4I 2020.

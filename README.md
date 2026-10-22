@@ -1,5 +1,19 @@
 # Digital Thread Analytics
 
+[![Live on Vercel](https://img.shields.io/badge/Vercel-Live_Deployment-black?style=flat&logo=vercel)](https://digital-thread-analytics.vercel.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?style=flat&logo=github)](https://github.com/adminsharpcode/digital-thread-analytics)
+
+> **Live Deployment:** [https://digital-thread-analytics.vercel.app](https://digital-thread-analytics.vercel.app)  
+> **Source Repository:** [https://github.com/adminsharpcode/digital-thread-analytics](https://github.com/adminsharpcode/digital-thread-analytics)  
+> **Course:** Programming for Data Science (MACSE502) — Final Case Study  
+> **Institution:** School of Computer Science and Engineering, Vellore Institute of Technology (VIT), Vellore  
+> **Faculty Guide:** Dr. M. Rajasekhara Babu  
+> **Team Members:**  
+> - Vedant Nimkar (`26MML0045`)  
+> - Durvesh Mahajan (`26MML0055`)  
+> - Ayush Sharma (`26MML0043`)  
+> - Shreyan Panda (`26MML0022`)  
+
 A lineage backbone for the end-to-end data science lifecycle, applied to
 predictive maintenance on the AI4I 2020 dataset.
 
