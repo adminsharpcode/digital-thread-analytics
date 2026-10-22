@@ -1,0 +1,21 @@
+data/raw/
+data/processed/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+mlruns/
+.dvc/cache
+_page1_extract/
+test_*.docx
+test_*.pdf
+test_*.py
+inspect_*.py
+extract_*.py
+build_*.py
+make_perfect_manuscript.py
+apply_cute_boundary.py
+Claude outputs/
+RMC-Spark_converted_test.docx
+RMC-Spark_Manuscript*
+.vercel/

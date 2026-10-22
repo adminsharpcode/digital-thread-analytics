@@ -1,0 +1,18 @@
+{
+  "psi": {
+    "air_temp_K": 0.0,
+    "process_temp_K": 0.0,
+    "rot_speed_rpm": 0.0,
+    "torque_Nm": 0.0977,
+    "tool_wear_min": 2.561,
+    "temp_diff_K": 0.0,
+    "power_W": 0.077,
+    "wear_torque": 1.0616
+  },
+  "threshold": 0.2,
+  "drifted": true,
+  "simulation": {
+    "tool_wear_offset_min": 60,
+    "torque_scale": 1.08
+  }
+}

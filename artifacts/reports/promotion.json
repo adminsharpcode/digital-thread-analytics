@@ -1,0 +1,6 @@
+{
+  "deployment": "prod-01",
+  "model": "random_forest",
+  "average_precision": 0.7354,
+  "runner_up": "logistic_regression"
+}

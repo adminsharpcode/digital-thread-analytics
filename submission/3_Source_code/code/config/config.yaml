@@ -1,0 +1,81 @@
+# Digital Thread Analytics — single configuration for the whole lifecycle.
+# Every stage reads this file and records the slice of it that it used as
+# node attributes in the ledger, so a run's configuration is part of the thread.
+
+project: digital-thread-analytics
+seed: 42
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  artifacts: artifacts
+  ledger: artifacts/thread_ledger.db
+  models: artifacts/models
+  reports: artifacts/reports
+
+dataset:
+  name: ai4i2020
+  # UCI AI4I 2020 Predictive Maintenance Dataset (DOI 10.24432/C5HS5C)
+  url: https://archive.ics.uci.edu/static/public/601/ai4i+2020+predictive+maintenance+dataset.zip
+  csv_name: ai4i2020.csv
+  target: Machine failure
+  id_columns: [UDI, Product ID]
+  # the five per-mode failure flags leak the target and are dropped from X
+  leakage_columns: [TWF, HDF, PWF, OSF, RNF]
+  # when the UCI download is unreachable (offline, firewall, proxy), generate a
+  # replica from the documented generation procedure instead. The ledger records
+  # which source was used, so results built on a replica are never mistaken for
+  # results built on the real file. Set to false for published results.
+  allow_synthetic_fallback: true
+
+validation:
+  expected_rows: 10000
+  required_columns:
+    - Air temperature [K]
+    - Process temperature [K]
+    - Rotational speed [rpm]
+    - Torque [Nm]
+    - Tool wear [min]
+    - Type
+    - Machine failure
+  ranges:
+    Air temperature [K]: [285.0, 310.0]
+    Process temperature [K]: [295.0, 320.0]
+    Rotational speed [rpm]: [1000, 3000]
+    Torque [Nm]: [0.0, 100.0]
+    Tool wear [min]: [0, 300]
+  max_null_fraction: 0.0
+  max_duplicate_fraction: 0.0
+
+features:
+  # domain features taken from the failure mechanisms documented with the data
+  engineered:
+    - temp_diff_K          # process - air temperature, drives heat dissipation
+    - power_W              # torque * angular velocity, drives power failure
+    - wear_torque          # tool wear * torque, drives overstrain
+  # post-cleaning column name (the raw file calls it "Type")
+  categorical: [type]
+
+train:
+  test_size: 0.2
+  stratify: true
+  models:
+    logistic_regression:
+      class_weight: balanced
+      max_iter: 1000
+    random_forest:
+      n_estimators: 300
+      max_depth: 12
+      class_weight: balanced_subsample
+      min_samples_leaf: 2
+  primary_metric: average_precision   # PR-AUC: the positive class is ~3.4%
+
+evaluate:
+  promote_if_better_than: 0.50        # gate on the primary metric
+
+monitor:
+  psi_threshold: 0.20                 # >0.2 is the conventional "significant shift"
+  drift_simulation:
+    # deliberately shift the monitored batch so the feedback loop can be shown
+    tool_wear_offset_min: 60
+    torque_scale: 1.08

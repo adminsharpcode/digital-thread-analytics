@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thread Ledger</title>
+<style>
+  :root { --bg:#ffffff; --ink:#1f2933; --muted:#5b6875; --line:#e1e6eb; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#14181d; --ink:#e8ecf0; --muted:#9aa7b4; --line:#2a3038; }
+  }
+  html, body { background: var(--bg); color: var(--ink); margin:0;
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 24px 28px 8px; }
+  h1 { margin:0 0 4px; font-size: 20px; letter-spacing:-0.01em; }
+  p.sub { margin:0; color: var(--muted); font-size: 13px; }
+  .wrap { overflow:auto; padding: 12px 28px 32px; }
+  svg { display:block; }
+  text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+  .ntype { font-size: 9px; fill: var(--muted); text-transform: uppercase; letter-spacing:.06em; }
+  .nname { font-size: 12px; font-weight: 600; }
+  .nver  { font-size: 9.5px; fill: var(--muted); }
+  .elabel { font-size: 8.5px; fill: var(--muted); }
+  .legend { padding: 0 28px 28px; display:flex; flex-wrap:wrap; gap:10px; }
+  .chip { font-size:11px; padding:3px 9px; border-radius:99px; border:1px solid; }
+  @media (max-width: 640px) { header, .wrap, .legend { padding-left:16px; padding-right:16px; } }
+</style></head>
+<body>
+<header>
+  <h1>Thread Ledger</h1>
+  <p class="sub">32 nodes · 50 edges · hover any node for its recorded attributes</p>
+</header>
+<div class="wrap">
+<svg width="2970" height="752" viewBox="0 0 2970 752" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id='arrow' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M 0 0 L 10 5 L 0 10 z' fill='#8b97a3'/></marker></defs>
+<path class='edge' d='M 230 67 C 285 67, 285 67, 340 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<text class='elabel' x='285' y='62' text-anchor='middle'>BUILT_FROM</text>
+<path class='edge' d='M 230 151 C 285 151, 285 67, 340 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<text class='elabel' x='285' y='104' text-anchor='middle'>RAN_IN</text>
+<path class='edge' d='M 530 67 C 585 67, 585 67, 640 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='62' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 830 67 C 885 67, 885 67, 940 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>VALIDATES</title></path>
+<text class='elabel' x='885' y='62' text-anchor='middle'>VALIDATES</text>
+<path class='edge' d='M 530 67 C 585 67, 585 151, 640 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='104' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 285 67, 285 151, 340 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<text class='elabel' x='285' y='104' text-anchor='middle'>BUILT_FROM</text>
+<path class='edge' d='M 230 151 C 285 151, 285 151, 340 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<text class='elabel' x='285' y='146' text-anchor='middle'>RAN_IN</text>
+<path class='edge' d='M 830 67 C 885 67, 885 151, 940 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>DERIVED_FROM</title></path>
+<text class='elabel' x='885' y='104' text-anchor='middle'>DERIVED_FROM</text>
+<path class='edge' d='M 530 151 C 735 151, 735 151, 940 151' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<path class='edge' d='M 530 151 C 585 151, 585 235, 640 235' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='188' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 285 67, 285 235, 340 235' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<text class='elabel' x='285' y='146' text-anchor='middle'>BUILT_FROM</text>
+<path class='edge' d='M 230 151 C 285 151, 285 235, 340 235' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<text class='elabel' x='285' y='188' text-anchor='middle'>RAN_IN</text>
+<path class='edge' d='M 1130 151 C 1185 151, 1185 67, 1240 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>DERIVED_FROM</title></path>
+<text class='elabel' x='1185' y='104' text-anchor='middle'>DERIVED_FROM</text>
+<path class='edge' d='M 530 235 C 885 235, 885 67, 1240 67' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<path class='edge' d='M 530 235 C 585 235, 585 319, 640 319' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='272' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 885 67, 885 67, 1540 67' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<path class='edge' d='M 230 151 C 885 151, 885 67, 1540 67' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<path class='edge' d='M 1430 67 C 1485 67, 1485 67, 1540 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>TRAINED_ON</title></path>
+<text class='elabel' x='1485' y='62' text-anchor='middle'>TRAINED_ON</text>
+<path class='edge' d='M 1730 67 C 1785 67, 1785 67, 1840 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='1785' y='62' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 2030 67 C 2085 67, 2085 67, 2140 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>EVALUATES</title></path>
+<text class='elabel' x='2085' y='62' text-anchor='middle'>EVALUATES</text>
+<path class='edge' d='M 1730 67 C 1785 67, 1785 151, 1840 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='1785' y='104' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 885 67, 885 151, 1540 151' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<path class='edge' d='M 230 151 C 885 151, 885 151, 1540 151' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<path class='edge' d='M 1430 67 C 1485 67, 1485 151, 1540 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>TRAINED_ON</title></path>
+<text class='elabel' x='1485' y='104' text-anchor='middle'>TRAINED_ON</text>
+<path class='edge' d='M 1730 151 C 1785 151, 1785 235, 1840 235' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='1785' y='188' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 2030 235 C 2085 235, 2085 151, 2140 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>EVALUATES</title></path>
+<text class='elabel' x='2085' y='188' text-anchor='middle'>EVALUATES</text>
+<path class='edge' d='M 1730 151 C 1785 151, 1785 319, 1840 319' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='1785' y='230' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 285 67, 285 319, 340 319' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<text class='elabel' x='285' y='188' text-anchor='middle'>BUILT_FROM</text>
+<path class='edge' d='M 230 151 C 285 151, 285 319, 340 319' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<text class='elabel' x='285' y='230' text-anchor='middle'>RAN_IN</text>
+<path class='edge' d='M 2030 235 C 2085 235, 2085 235, 2140 235' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PROMOTED_FROM</title></path>
+<text class='elabel' x='2085' y='230' text-anchor='middle'>PROMOTED_FROM</text>
+<path class='edge' d='M 530 319 C 1335 319, 1335 235, 2140 235' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<path class='edge' d='M 530 319 C 585 319, 585 403, 640 403' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='356' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 285 67, 285 403, 340 403' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<path class='edge' d='M 230 151 C 285 151, 285 403, 340 403' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<text class='elabel' x='285' y='272' text-anchor='middle'>RAN_IN</text>
+<path class='edge' d='M 2330 235 C 2385 235, 2385 67, 2440 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>SERVED_BY</title></path>
+<text class='elabel' x='2385' y='146' text-anchor='middle'>SERVED_BY</text>
+<path class='edge' d='M 1430 67 C 1935 67, 1935 67, 2440 67' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>DERIVED_FROM</title></path>
+<path class='edge' d='M 530 403 C 1485 403, 1485 67, 2440 67' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<path class='edge' d='M 530 403 C 585 403, 585 487, 640 487' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='440' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 285 67, 285 487, 340 487' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<path class='edge' d='M 230 151 C 285 151, 285 487, 340 487' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<path class='edge' d='M 2330 235 C 2385 235, 2385 151, 2440 151' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>SERVED_BY</title></path>
+<text class='elabel' x='2385' y='188' text-anchor='middle'>SERVED_BY</text>
+<path class='edge' d='M 1430 67 C 1935 67, 1935 151, 2440 151' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>DERIVED_FROM</title></path>
+<path class='edge' d='M 530 487 C 1485 487, 1485 151, 2440 151' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<path class='edge' d='M 530 487 C 585 487, 585 571, 640 571' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='524' text-anchor='middle'>PRODUCED_BY</text>
+<path class='edge' d='M 230 67 C 285 67, 285 571, 340 571' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>BUILT_FROM</title></path>
+<path class='edge' d='M 230 151 C 285 151, 285 571, 340 571' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>RAN_IN</title></path>
+<path class='edge' d='M 2630 151 C 2685 151, 2685 67, 2740 67' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>OBSERVED_ON</title></path>
+<text class='elabel' x='2685' y='104' text-anchor='middle'>OBSERVED_ON</text>
+<path class='edge' d='M 530 571 C 1635 571, 1635 67, 2740 67' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<path class='edge' d='M 830 67 C 1785 67, 1785 67, 2740 67' fill='none' stroke='#8b97a3' stroke-width='0.7' stroke-opacity='0.45' marker-end='url(#arrow)'><title>TRIGGERS_RETRAIN</title></path>
+<path class='edge' d='M 530 571 C 585 571, 585 655, 640 655' fill='none' stroke='#8b97a3' stroke-width='1.3' stroke-opacity='1' marker-end='url(#arrow)'><title>PRODUCED_BY</title></path>
+<text class='elabel' x='585' y='608' text-anchor='middle'>PRODUCED_BY</text>
+<g class='node' data-type='run'><title>run · 284f2ccdfd5e0208
+{
+  &quot;source&quot;: &quot;https://archive.ics.uci.edu/static/public/601/ai4i+2020+predictive+maintenance+dataset.zip&quot;
+}</title><rect x='340' y='40' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='350' y='57'>run</text><text class='nname' x='350' y='73'>ingest</text><text class='nver' x='350' y='86'>ingest-d5cdacbb</text></g>
+<g class='node' data-type='run'><title>run · 246ea480e1740fe4
+{}</title><rect x='340' y='124' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='350' y='141'>run</text><text class='nname' x='350' y='157'>clean</text><text class='nver' x='350' y='170'>clean-c8fb3fe3</text></g>
+<g class='node' data-type='run'><title>run · 5cc2bf8a91fc17fd
+{}</title><rect x='340' y='208' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='350' y='225'>run</text><text class='nname' x='350' y='241'>features</text><text class='nver' x='350' y='254'>features-d48d05ea</text></g>
+<g class='node' data-type='run'><title>run · ed601f9e0a5117bc
+{
+  &quot;gate&quot;: 0.5,
+  &quot;primary_metric&quot;: &quot;average_precision&quot;
+}</title><rect x='340' y='292' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='350' y='309'>run</text><text class='nname' x='350' y='325'>promote</text><text class='nver' x='350' y='338'>promote-5ed92b12</text></g>
+<g class='node' data-type='run'><title>run · 08b8b4d4d2b466cf
+{
+  &quot;batch&quot;: &quot;holdout-baseline&quot;,
+  &quot;deployment&quot;: &quot;prod-01&quot;
+}</title><rect x='340' y='376' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='350' y='393'>run</text><text class='nname' x='350' y='409'>serve</text><text class='nver' x='350' y='422'>serve-a9598e99</text></g>
+<g class='node' data-type='run'><title>run · fd9bdc0e0f93bc59
+{
+  &quot;batch&quot;: &quot;production-week-01&quot;,
+  &quot;deployment&quot;: &quot;prod-01&quot;
+}</title><rect x='340' y='460' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='350' y='477'>run</text><text class='nname' x='350' y='493'>serve</text><text class='nver' x='350' y='506'>serve-3670df62</text></g>
+<g class='node' data-type='run'><title>run · 869760294b7dac94
+{
+  &quot;psi_threshold&quot;: 0.2
+}</title><rect x='340' y='544' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='350' y='561'>run</text><text class='nname' x='350' y='577'>monitor</text><text class='nver' x='350' y='590'>monitor-8e036c12</text></g>
+<g class='node' data-type='code_rev'><title>code_rev · 4f6b817301f85910
+{}</title><rect x='40' y='40' width='190' height='54' rx='6' fill='#eceff2' stroke='#8b97a3' stroke-width='1.3'/><text class='ntype' x='50' y='57'>code_rev</text><text class='nname' x='50' y='73'>repository</text><text class='nver' x='50' y='86'>sha256:8ddcf2852b7457b0</text></g>
+<g class='node' data-type='environment'><title>environment · 0e1696f4e2ab9a86
+{}</title><rect x='40' y='124' width='190' height='54' rx='6' fill='#eceff2' stroke='#8b97a3' stroke-width='1.3'/><text class='ntype' x='50' y='141'>environment</text><text class='nname' x='50' y='157'>python-env</text><text class='nver' x='50' y='170'>b75bf6c9c482</text></g>
+<g class='node' data-type='dataset'><title>dataset · 26bcae77c19913a9
+{
+  &quot;column_names&quot;: [
+    &quot;UDI&quot;,
+    &quot;Product ID&quot;,
+    &quot;Type&quot;,
+    &quot;Air temperature [K]&quot;,
+    &quot;Process temperature [K]&quot;,
+    &quot;Rotational speed [rpm]&quot;,
+    &quot;Torque [Nm]&quot;,
+    &quot;Tool wear [min]&quot;,
+    &quot;Machine failure&quot;,
+    &quot;TWF&quot;,
+    &quot;HDF&quot;,
+    &quot;PWF&quot;,
+    &quot;OSF&quot;,
+    &quot;RNF&quot;
+  ],
+  &quot;columns&quot;: 14,
+  &quot;environment&quot;: {
+    &quot;machine&quot;: &quot;AMD64&quot;,
+    &quot;numpy&quot;: &quot;2.4.6&quot;,
+    &quot;pandas&quot;: &quot;3.0.3&quot;,
+    &quot;platform&quot;: &quot;Windows 11&quot;,
+    &quot;python&quot;: &quot;3.12.10&quot;,
+    &quot;scipy&quot;: &quot;1.15.3&quot;,
+    &quot;sklearn&quot;: &quot;1.9.0&quot;
+  },
+  &quot;origin&quot;: &quot;synthetic&quot;,
+  &quot;path&quot;: &quot;data/raw\\ai4i2020.csv&quot;,
+  &quot;rows&quot;: 10000,
+  &quot;source&quot;: &quot;generated from the documented AI4I 2020 procedure&quot;
+}</title><rect x='640' y='40' width='190' height='54' rx='6' fill='#e4ecf5' stroke='#3d5a80' stroke-width='1.3'/><text class='ntype' x='650' y='57'>dataset</text><text class='nname' x='650' y='73'>ai4i2020-raw</text><text class='nver' x='650' y='86'>fc563828d5e2</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · 1a0b41631ad1072c
+{
+  &quot;seconds&quot;: 1.1951,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='640' y='124' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='650' y='141'>evaluation</text><text class='nname' x='650' y='157'>ingest-outcome</text><text class='nver' x='650' y='170'>ingest-d5cdacbb</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · 86747c6c1c3d0beb
+{
+  &quot;seconds&quot;: 0.3767,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='640' y='208' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='650' y='225'>evaluation</text><text class='nname' x='650' y='241'>clean-outcome</text><text class='nver' x='650' y='254'>clean-c8fb3fe3</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · ca3caea8f7dd6c2b
+{
+  &quot;seconds&quot;: 0.4976,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='640' y='292' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='650' y='309'>evaluation</text><text class='nname' x='650' y='325'>features-outcome</text><text class='nver' x='650' y='338'>features-d48d05ea</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · e84e535e5bb1e066
+{
+  &quot;seconds&quot;: 0.0057,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='640' y='376' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='650' y='393'>evaluation</text><text class='nname' x='650' y='409'>promote-outcome</text><text class='nver' x='650' y='422'>promote-5ed92b12</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · b9b50f5143734a62
+{
+  &quot;seconds&quot;: 0.305,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='640' y='460' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='650' y='477'>evaluation</text><text class='nname' x='650' y='493'>serve-outcome</text><text class='nver' x='650' y='506'>serve-a9598e99</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · bccb51d2c9022b4d
+{
+  &quot;seconds&quot;: 0.2228,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='640' y='544' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='650' y='561'>evaluation</text><text class='nname' x='650' y='577'>serve-outcome</text><text class='nver' x='650' y='590'>serve-3670df62</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · 050c42de0f15bd10
+{
+  &quot;seconds&quot;: 0.0152,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='640' y='628' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='650' y='645'>evaluation</text><text class='nname' x='650' y='661'>monitor-outcome</text><text class='nver' x='650' y='674'>monitor-8e036c12</text></g>
+<g class='node' data-type='validation'><title>validation · 8c5d22b1229d73b5
+{
+  &quot;checks&quot;: 9,
+  &quot;detail&quot;: [
+    {
+      &quot;check&quot;: &quot;required_columns_present&quot;,
+      &quot;detail&quot;: &quot;all present&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;row_count&quot;,
+      &quot;detail&quot;: &quot;10000 rows (expected 10000)&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;null_fraction&quot;,
+      &quot;detail&quot;: &quot;max null fraction 0.0000&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;duplicate_fraction&quot;,
+      &quot;detail&quot;: &quot;0.0000&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;range[Air temperature [K]]&quot;,
+      &quot;detail&quot;: &quot;0 values outside [285.0, 310.0]&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;range[Process temperature [K]]&quot;,
+      &quot;detail&quot;: &quot;0 values outside [295.0, 320.0]&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;range[Rotational speed [rpm]]&quot;,
+      &quot;detail&quot;: &quot;0 values outside [1000, 3000]&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;range[Torque [Nm]]&quot;,
+      &quot;detail&quot;: &quot;0 values outside [0.0, 100.0]&quot;,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;check&quot;: &quot;range[Tool wear [min]]&quot;,
+      &quot;detail&quot;: &quot;0 values outside [0, 300]&quot;,
+      &quot;passed&quot;: true
+    }
+  ],
+  &quot;failed&quot;: 0,
+  &quot;passed&quot;: true
+}</title><rect x='940' y='40' width='190' height='54' rx='6' fill='#f3e4e4' stroke='#9e4b4b' stroke-width='1.3'/><text class='ntype' x='950' y='57'>validation</text><text class='nname' x='950' y='73'>ai4i2020-expectations</text><text class='nver' x='950' y='86'>fc563828d5e2</text></g>
+<g class='node' data-type='dataset'><title>dataset · bba66c16f786f373
+{
+  &quot;columns&quot;: 7,
+  &quot;dropped_columns&quot;: [
+    &quot;UDI&quot;,
+    &quot;Product ID&quot;,
+    &quot;TWF&quot;,
+    &quot;HDF&quot;,
+    &quot;PWF&quot;,
+    &quot;OSF&quot;,
+    &quot;RNF&quot;
+  ],
+  &quot;path&quot;: &quot;data/processed\\clean.parquet&quot;,
+  &quot;positive_rate&quot;: 0.0339,
+  &quot;profile_path&quot;: &quot;artifacts/reports\\profile_clean.json&quot;,
+  &quot;rows&quot;: 10000
+}</title><rect x='940' y='124' width='190' height='54' rx='6' fill='#e4ecf5' stroke='#3d5a80' stroke-width='1.3'/><text class='ntype' x='950' y='141'>dataset</text><text class='nname' x='950' y='157'>ai4i2020-clean</text><text class='nver' x='950' y='170'>48f4547469e1</text></g>
+<g class='node' data-type='feature_set'><title>feature_set · 190c63cc470d42ab
+{
+  &quot;definitions&quot;: {
+    &quot;power_W&quot;: &quot;torque_Nm * rot_speed_rpm * 2*pi/60&quot;,
+    &quot;temp_diff_K&quot;: &quot;process_temp_K - air_temp_K&quot;,
+    &quot;wear_torque&quot;: &quot;tool_wear_min * torque_Nm&quot;
+  },
+  &quot;features&quot;: [
+    &quot;air_temp_K&quot;,
+    &quot;process_temp_K&quot;,
+    &quot;rot_speed_rpm&quot;,
+    &quot;torque_Nm&quot;,
+    &quot;tool_wear_min&quot;,
+    &quot;temp_diff_K&quot;,
+    &quot;power_W&quot;,
+    &quot;wear_torque&quot;,
+    &quot;type_H&quot;,
+    &quot;type_L&quot;,
+    &quot;type_M&quot;
+  ],
+  &quot;n_features&quot;: 11,
+  &quot;path&quot;: &quot;data/processed\\features.parquet&quot;,
+  &quot;rows&quot;: 10000,
+  &quot;spec_path&quot;: &quot;artifacts/reports\\feature_spec.json&quot;,
+  &quot;target&quot;: &quot;machine_failure&quot;
+}</title><rect x='1240' y='40' width='190' height='54' rx='6' fill='#dfeee4' stroke='#3f7350' stroke-width='1.3'/><text class='ntype' x='1250' y='57'>feature_set</text><text class='nname' x='1250' y='73'>ai4i2020-features</text><text class='nver' x='1250' y='86'>ce39825864cd</text></g>
+<g class='node' data-type='run'><title>run · 0546f9879d82cfae
+{
+  &quot;algorithm&quot;: &quot;logistic_regression&quot;,
+  &quot;class_weight&quot;: &quot;balanced&quot;,
+  &quot;max_iter&quot;: 1000,
+  &quot;seed&quot;: 42,
+  &quot;test_size&quot;: 0.2
+}</title><rect x='1540' y='40' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='1550' y='57'>run</text><text class='nname' x='1550' y='73'>train:logistic_regression</text><text class='nver' x='1550' y='86'>train:logistic_regression-c…</text></g>
+<g class='node' data-type='run'><title>run · 9c5209ffef769065
+{
+  &quot;algorithm&quot;: &quot;random_forest&quot;,
+  &quot;class_weight&quot;: &quot;balanced_subsample&quot;,
+  &quot;max_depth&quot;: 12,
+  &quot;min_samples_leaf&quot;: 2,
+  &quot;n_estimators&quot;: 300,
+  &quot;seed&quot;: 42,
+  &quot;test_size&quot;: 0.2
+}</title><rect x='1540' y='124' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='1550' y='141'>run</text><text class='nname' x='1550' y='157'>train:random_forest</text><text class='nver' x='1550' y='170'>train:random_forest-84658509</text></g>
+<g class='node' data-type='model'><title>model · ab3d4077c46fca2f
+{
+  &quot;algorithm&quot;: &quot;logistic_regression&quot;,
+  &quot;average_precision&quot;: 0.2693,
+  &quot;f1&quot;: 0.168,
+  &quot;feature_set&quot;: &quot;ce39825864cd&quot;,
+  &quot;mlflow_run_id&quot;: null,
+  &quot;params&quot;: {
+    &quot;class_weight&quot;: &quot;balanced&quot;,
+    &quot;max_iter&quot;: 1000
+  },
+  &quot;path&quot;: &quot;artifacts/models\\logistic_regression.joblib&quot;,
+  &quot;precision&quot;: 0.0939,
+  &quot;recall&quot;: 0.7941,
+  &quot;roc_auc&quot;: 0.8235,
+  &quot;seed&quot;: 42
+}</title><rect x='1840' y='40' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='1850' y='57'>model</text><text class='nname' x='1850' y='73'>logistic_regression</text><text class='nver' x='1850' y='86'>ce39825864cd</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · c5c3b0731519e7a2
+{
+  &quot;seconds&quot;: 0.0542,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='1840' y='124' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='1850' y='141'>evaluation</text><text class='nname' x='1850' y='157'>train:logistic_regressio…</text><text class='nver' x='1850' y='170'>train:logistic_regression-c…</text></g>
+<g class='node' data-type='model'><title>model · 7c17bf95d317afd9
+{
+  &quot;algorithm&quot;: &quot;random_forest&quot;,
+  &quot;average_precision&quot;: 0.7354,
+  &quot;f1&quot;: 0.7288,
+  &quot;feature_set&quot;: &quot;ce39825864cd&quot;,
+  &quot;mlflow_run_id&quot;: null,
+  &quot;params&quot;: {
+    &quot;class_weight&quot;: &quot;balanced_subsample&quot;,
+    &quot;max_depth&quot;: 12,
+    &quot;min_samples_leaf&quot;: 2,
+    &quot;n_estimators&quot;: 300
+  },
+  &quot;path&quot;: &quot;artifacts/models\\random_forest.joblib&quot;,
+  &quot;precision&quot;: 0.86,
+  &quot;recall&quot;: 0.6324,
+  &quot;roc_auc&quot;: 0.9586,
+  &quot;seed&quot;: 42
+}</title><rect x='1840' y='208' width='190' height='54' rx='6' fill='#e8e2f2' stroke='#5c4b8a' stroke-width='1.3'/><text class='ntype' x='1850' y='225'>model</text><text class='nname' x='1850' y='241'>random_forest</text><text class='nver' x='1850' y='254'>ce39825864cd</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · cfe0095a89e51e28
+{
+  &quot;seconds&quot;: 1.3756,
+  &quot;status&quot;: &quot;succeeded&quot;
+}</title><rect x='1840' y='292' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='1850' y='309'>evaluation</text><text class='nname' x='1850' y='325'>train:random_forest-outc…</text><text class='nver' x='1850' y='338'>train:random_forest-84658509</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · 2a4dca74c43a67e8
+{
+  &quot;average_precision&quot;: 0.2693,
+  &quot;f1&quot;: 0.168,
+  &quot;n_test&quot;: 2000,
+  &quot;positives&quot;: 68,
+  &quot;precision&quot;: 0.0939,
+  &quot;recall&quot;: 0.7941,
+  &quot;roc_auc&quot;: 0.8235
+}</title><rect x='2140' y='40' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='2150' y='57'>evaluation</text><text class='nname' x='2150' y='73'>logistic_regression-hold…</text><text class='nver' x='2150' y='86'>ce39825864cd</text></g>
+<g class='node' data-type='evaluation'><title>evaluation · 6e0400637f8cb70a
+{
+  &quot;average_precision&quot;: 0.7354,
+  &quot;f1&quot;: 0.7288,
+  &quot;n_test&quot;: 2000,
+  &quot;positives&quot;: 68,
+  &quot;precision&quot;: 0.86,
+  &quot;recall&quot;: 0.6324,
+  &quot;roc_auc&quot;: 0.9586
+}</title><rect x='2140' y='124' width='190' height='54' rx='6' fill='#f7f0e0' stroke='#a9761f' stroke-width='1.3'/><text class='ntype' x='2150' y='141'>evaluation</text><text class='nname' x='2150' y='157'>random_forest-holdout</text><text class='nver' x='2150' y='170'>ce39825864cd</text></g>
+<g class='node' data-type='deployment'><title>deployment · e75dd0f6a4090e55
+{
+  &quot;gate&quot;: 0.5,
+  &quot;model&quot;: &quot;random_forest&quot;,
+  &quot;model_digest&quot;: &quot;random_forest-ce39825864cd-42&quot;,
+  &quot;model_path&quot;: &quot;artifacts/models\\random_forest.joblib&quot;,
+  &quot;primary_metric&quot;: &quot;average_precision&quot;,
+  &quot;score&quot;: 0.7354,
+  &quot;status&quot;: &quot;active&quot;
+}</title><rect x='2140' y='208' width='190' height='54' rx='6' fill='#fbe7cf' stroke='#b06d1d' stroke-width='1.3'/><text class='ntype' x='2150' y='225'>deployment</text><text class='nname' x='2150' y='241'>prediction-service</text><text class='nver' x='2150' y='254'>prod-01</text></g>
+<g class='node' data-type='prediction_batch'><title>prediction_batch · 6587a5b62080422b
+{
+  &quot;deployment&quot;: &quot;prod-01&quot;,
+  &quot;flagged&quot;: 324,
+  &quot;mean_probability&quot;: 0.055896,
+  &quot;model&quot;: &quot;random_forest&quot;,
+  &quot;model_digest&quot;: &quot;random_forest-ce39825864cd-42&quot;,
+  &quot;path&quot;: &quot;artifacts/reports\\predictions_holdout-baseline.csv&quot;,
+  &quot;rows&quot;: 10000
+}</title><rect x='2440' y='40' width='190' height='54' rx='6' fill='#fbe7cf' stroke='#b06d1d' stroke-width='1.3'/><text class='ntype' x='2450' y='57'>prediction_batch</text><text class='nname' x='2450' y='73'>holdout-baseline</text><text class='nver' x='2450' y='86'>prod-01</text></g>
+<g class='node' data-type='prediction_batch'><title>prediction_batch · 828b856fcc925cb7
+{
+  &quot;deployment&quot;: &quot;prod-01&quot;,
+  &quot;flagged&quot;: 788,
+  &quot;mean_probability&quot;: 0.117616,
+  &quot;model&quot;: &quot;random_forest&quot;,
+  &quot;model_digest&quot;: &quot;random_forest-ce39825864cd-42&quot;,
+  &quot;path&quot;: &quot;artifacts/reports\\predictions_production-week-01.csv&quot;,
+  &quot;rows&quot;: 10000
+}</title><rect x='2440' y='124' width='190' height='54' rx='6' fill='#fbe7cf' stroke='#b06d1d' stroke-width='1.3'/><text class='ntype' x='2450' y='141'>prediction_batch</text><text class='nname' x='2450' y='157'>production-week-01</text><text class='nver' x='2450' y='170'>prod-01</text></g>
+<g class='node' data-type='drift_report'><title>drift_report · 454f1c12c625ca69
+{
+  &quot;drifted&quot;: true,
+  &quot;path&quot;: &quot;artifacts/reports\\drift_report.json&quot;,
+  &quot;per_feature&quot;: {
+    &quot;air_temp_K&quot;: 0.0,
+    &quot;power_W&quot;: 0.077,
+    &quot;process_temp_K&quot;: 0.0,
+    &quot;rot_speed_rpm&quot;: 0.0,
+    &quot;temp_diff_K&quot;: 0.0,
+    &quot;tool_wear_min&quot;: 2.561,
+    &quot;torque_Nm&quot;: 0.0977,
+    &quot;wear_torque&quot;: 1.0616
+  },
+  &quot;psi&quot;: 2.561,
+  &quot;simulated&quot;: true,
+  &quot;simulation&quot;: {
+    &quot;tool_wear_offset_min&quot;: 60,
+    &quot;torque_scale&quot;: 1.08
+  },
+  &quot;threshold&quot;: 0.2,
+  &quot;worst_feature&quot;: &quot;tool_wear_min&quot;
+}</title><rect x='2740' y='40' width='190' height='54' rx='6' fill='#f9dcd6' stroke='#9c4221' stroke-width='1.3'/><text class='ntype' x='2750' y='57'>drift_report</text><text class='nname' x='2750' y='73'>production-week-01</text><text class='nver' x='2750' y='86'>psi-2.561</text></g>
+</svg>
+</div>
+<div class="legend"><span class='chip' style='background:#eceff2;border-color:#8b97a3;color:#1f2933'>code_rev · 1</span><span class='chip' style='background:#e4ecf5;border-color:#3d5a80;color:#1f2933'>dataset · 2</span><span class='chip' style='background:#fbe7cf;border-color:#b06d1d;color:#1f2933'>deployment · 1</span><span class='chip' style='background:#f9dcd6;border-color:#9c4221;color:#1f2933'>drift_report · 1</span><span class='chip' style='background:#eceff2;border-color:#8b97a3;color:#1f2933'>environment · 1</span><span class='chip' style='background:#f7f0e0;border-color:#a9761f;color:#1f2933'>evaluation · 11</span><span class='chip' style='background:#dfeee4;border-color:#3f7350;color:#1f2933'>feature_set · 1</span><span class='chip' style='background:#e8e2f2;border-color:#5c4b8a;color:#1f2933'>model · 2</span><span class='chip' style='background:#fbe7cf;border-color:#b06d1d;color:#1f2933'>prediction_batch · 2</span><span class='chip' style='background:#e8e2f2;border-color:#5c4b8a;color:#1f2933'>run · 9</span><span class='chip' style='background:#f3e4e4;border-color:#9e4b4b;color:#1f2933'>validation · 1</span></div>
+</body></html>

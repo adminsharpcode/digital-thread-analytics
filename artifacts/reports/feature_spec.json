@@ -1,0 +1,22 @@
+{
+  "definitions": {
+    "temp_diff_K": "process_temp_K - air_temp_K",
+    "power_W": "torque_Nm * rot_speed_rpm * 2*pi/60",
+    "wear_torque": "tool_wear_min * torque_Nm"
+  },
+  "features": [
+    "air_temp_K",
+    "process_temp_K",
+    "rot_speed_rpm",
+    "torque_Nm",
+    "tool_wear_min",
+    "temp_diff_K",
+    "power_W",
+    "wear_torque",
+    "type_H",
+    "type_L",
+    "type_M"
+  ],
+  "target": "machine_failure",
+  "source_digest": "48f4547469e1ca39c0bf3d101e19babe052eb69e5069469038432d71841f55b9"
+}

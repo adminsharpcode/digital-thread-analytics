@@ -1,0 +1,7 @@
+mlflow>=3.0            # experiment tracking
+prefect>=3.0           # orchestration
+evidently>=0.7         # richer drift reports
+pandera>=0.20          # schema validation
+ydata-profiling>=4.0   # full EDA reports
+dvc>=3.0               # data/model versioning
+pytest>=8.0

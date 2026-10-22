@@ -1,0 +1,87 @@
+{
+  "reproducibility": {
+    "repeats": 5,
+    "rate": 1.0,
+    "artifacts_compared": 5,
+    "mismatched": [],
+    "mean_seconds": 3.8
+  },
+  "completeness": {
+    "terminal_artifacts": 6,
+    "complete": 6,
+    "rate": 1.0,
+    "broken": []
+  },
+  "trace_time": {
+    "model": {
+      "label": "deployed model",
+      "median_ms": 0.35,
+      "nodes_reached": 9
+    },
+    "prediction_batch": {
+      "label": "prediction batch",
+      "median_ms": 0.57,
+      "nodes_reached": 13
+    },
+    "drift_report": {
+      "label": "drift report",
+      "median_ms": 0.68,
+      "nodes_reached": 15
+    }
+  },
+  "overhead": {
+    "baseline_seconds": 2.74,
+    "threaded_comparable_seconds": 3.85,
+    "overhead_pct": 40.5,
+    "ledger_writes": 82,
+    "ledger_write_seconds": 0.073,
+    "instrumentation_pct": 1.89,
+    "digest_seconds": 0.021,
+    "digest_calls": 248,
+    "digest_pct": 0.54,
+    "ledger_kb": 60.0,
+    "comparable_stages": [
+      "ingest",
+      "clean",
+      "features",
+      "train:logistic_regression",
+      "train:random_forest",
+      "promote"
+    ],
+    "note": "serving and monitoring are excluded from the comparison because the baseline script does not perform them",
+    "baseline_scores": {
+      "logistic_regression": 0.2693,
+      "random_forest": 0.7354
+    }
+  },
+  "ledger": {
+    "nodes": {
+      "code_rev": 1,
+      "dataset": 2,
+      "deployment": 1,
+      "drift_report": 1,
+      "environment": 1,
+      "evaluation": 11,
+      "feature_set": 1,
+      "model": 2,
+      "prediction_batch": 2,
+      "run": 9,
+      "validation": 1
+    },
+    "edges": {
+      "BUILT_FROM": 9,
+      "DERIVED_FROM": 4,
+      "EVALUATES": 2,
+      "OBSERVED_ON": 1,
+      "PRODUCED_BY": 18,
+      "PROMOTED_FROM": 1,
+      "RAN_IN": 9,
+      "SERVED_BY": 2,
+      "TRAINED_ON": 2,
+      "TRIGGERS_RETRAIN": 1,
+      "VALIDATES": 1
+    },
+    "n_nodes": 32,
+    "n_edges": 50
+  }
+}

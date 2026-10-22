@@ -1,0 +1,56 @@
+# DVC stage definitions. The ledger and DVC are complementary: DVC
+# content-addresses the files, the ledger records what they mean to each other.
+# `dvc repro` runs the same stage functions the plain-Python flow calls.
+stages:
+  ingest:
+    cmd: python -m pipeline.s1_ingest
+    deps:
+      - pipeline/s1_ingest.py
+      - config/config.yaml
+    outs:
+      - data/raw
+
+  clean:
+    cmd: python -m pipeline.s2_clean
+    deps:
+      - pipeline/s2_clean.py
+      - data/raw
+    outs:
+      - data/processed/clean.parquet
+
+  features:
+    cmd: python -m pipeline.s3_features
+    deps:
+      - pipeline/s3_features.py
+      - data/processed/clean.parquet
+    outs:
+      - data/processed/features.parquet
+
+  train:
+    cmd: python -m pipeline.s4_train
+    deps:
+      - pipeline/s4_train.py
+      - data/processed/features.parquet
+    outs:
+      - artifacts/models
+    metrics:
+      - artifacts/reports/training_metrics.json:
+          cache: false
+
+  promote:
+    cmd: python -m pipeline.s5_evaluate
+    deps:
+      - pipeline/s5_evaluate.py
+      - artifacts/models
+    metrics:
+      - artifacts/reports/promotion.json:
+          cache: false
+
+  monitor:
+    cmd: python -m pipeline.s7_monitor
+    deps:
+      - pipeline/s7_monitor.py
+      - artifacts/models
+    metrics:
+      - artifacts/reports/drift_report.json:
+          cache: false

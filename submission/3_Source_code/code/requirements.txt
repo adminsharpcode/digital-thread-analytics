@@ -1,0 +1,24 @@
+# core — everything the framework and pipeline actually need
+pandas>=2.0
+numpy>=1.24
+scikit-learn>=1.3
+pyyaml>=6.0
+joblib>=1.3
+pyarrow>=14.0
+
+# serving
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2.0
+
+# optional, detected at import time; the pipeline runs without them
+mlflow>=3.0            # experiment tracking (ledger stores the run ids)
+prefect>=3.0           # orchestration (plain-Python flow works without it)
+evidently>=0.7         # richer drift reports than the built-in PSI
+pandera>=0.20          # schema validation to replace the built-in checks
+ydata-profiling>=4.0   # full EDA reports
+dvc>=3.0               # data/model versioning alongside the ledger
+
+# development
+pytest>=8.0
+httpx>=0.27          # required by fastapi's TestClient
